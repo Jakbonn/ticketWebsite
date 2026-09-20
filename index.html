@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div>
+            <a href="/">Tickets</a>
+            <a href="http://localhost:3000/index.html">Dashboard</a>    
+        </div>
+        
+        <div>
+            <button id="add-ticket-button" class="btn btn-primary">+ New ticket</button>
+        </div>
+    </header>
+
+    <hr>
+
+    <main>
+        <div class="tickets-container">
+
+        
+            <div>
+                <select name="status-select" id="status-select">
+                    <option value="">Status: All</option>
+                    <option value="new">Status: New</option>
+                    <option value="inprogress">Status: In progress</option>
+                    <option value="resolved">Status: Resolved</option>
+                </select>
+
+                <select name="priority-select" id="priority-select">
+                    <option value="">Priority: All</option>
+                    <option value="low">Priority: Low</option>
+                    <option value="medium">Priority: Medium</option>
+                    <option value="high">Priority: High</option>
+                </select>
+        
+                <input type="search" placeholder="🔍 Search" id="ticketSearch">
+            </div>
+
+            <div>
+                <table id="tickets-table"></table>
+            </div>
+
+            <div>
+                <p id="ticket-info">
+
+                </p>
+            </div>
+
+            <dialog id="create-ticket-dialog" class="create-ticket-dialog">
+                <div id="create-ticket-header">
+                    <div>
+                        <h3 id="create-ticket-title">New ticket</h3>
+                    </div>
+                    <div>
+                        <button type="button" id="close-ticket-dialog" class="btn btn-icon btn-ghost" aria-label="Close">✕</button>               
+                    </div>
+                </div>
+                
+                <form id="ticket-form">
+                    <div>   
+                        <select id="ticket-user" required>
+                            <option value="" selected disabled>Loading users...</option>
+                        </select>
+                        <select id="ticket-machine" required disabled>
+                            <option value="" selected disabled>Select a user first</option>
+                        </select>
+                        <select id="ticket-type" required>
+                            <option value="" selected disabled>Select ticket type</option>
+                            <option value="contact">Contact</option>
+                            <option value="hardware_problem">Hardware problem</option>
+                            <option value="software_problem">Software problem</option>
+                        </select>
+                    </div>
+                    <div>
+                    </div>
+                    <textarea id="ticket-problem" rows="2" cols="45" placeholder="Short description:" required></textarea><br>
+                    <textarea id="ticket-problem-extended" rows="8" cols="45" placeholder="Detailed description (optional):"></textarea><br>
+
+                    <p id="ticket-message" role="alert"></p>
+                    
+                    <button type="submit" id="send-ticket" class="btn btn-primary">Send</button>
+                </form>
+            </dialog>
+        </div>
+    </main>
+
+    <dialog class="login-dialog" id="login-dialog"> 
+        <div class="login-dialog-header">
+            <button class="closeBtn btn btn-icon btn-ghost" id="closeBtn" aria-label="Close login dialog">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+            </button>
+            <h2 class="login-dialog-title">
+                Welcome back
+            </h2>
+        </div>
+        <div>
+            <form class="login-form" id="login-form">
+                <label for="login">
+                    <div class="input-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="input-icon">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path>
+                        </svg>
+                        <input type="text" id="login" placeholder="Type your username:">
+                    </div>
+                    <hr>
+                </label>
+
+                <label for="password">
+                    <div class="input-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="input-icon">
+                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <input type="password" id="password" placeholder="Type your password:">
+                    </div>
+                    <hr>
+                </label>
+
+                <button type="button" id="loginButton" class="login-button btn btn-primary">Login</button>
+            </form>
+        </div>
+    </dialog>
+
+    <footer>
+        <div></div>
+        <div>
+            <p>IT Ticket Dashboard v1.0 © 2026 TomTom Internship Project</p>
+        </div>
+        <div>
+            <button id="adminPanelBtn" class="adminPanelBtn btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> <span id="adminPanelLabel">Login</span></button>
+        </div>
+    </footer>
+</body>
+<script type="module" src="app.js"></script>
+</html>
+    
